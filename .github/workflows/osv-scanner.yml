@@ -13,13 +13,13 @@ name: OSV-Scanner
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   merge_group:
-    branches: [ "master" ]
+    branches: [ "main" ]
   schedule:
     - cron: '38 12 * * 1'
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   # Required to upload SARIF file to CodeQL. See: https://github.com/github/codeql-action/issues/2117
@@ -36,7 +36,6 @@ jobs:
       # Only scan the top level go.mod file without recursively scanning directories since
       # this is pipeline is about releasing the go module and binary
       scan-args: |-
-        --recursive
         ./
     permissions:
       # Required to upload SARIF file to CodeQL. See: https://github.com/github/codeql-action/issues/2117
